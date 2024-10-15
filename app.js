@@ -1,6 +1,14 @@
 import * as THREE from '../three.module.js'
 import { OrbitControls } from "https://unpkg.com/three@0.112/examples/jsm/controls/OrbitControls.js"
 
+
+const SENSITIVITY = 0.3
+const ZOOM_ENABLED = false
+const MOVEMENT_ENABLED = false
+const FIELD_OF_VIEW = 80
+const RENDER_DISTANCE = 20
+
+
 let width = window.innerWidth, height = window.innerHeight
 
 function loadTexture(path) {
@@ -24,8 +32,9 @@ function buildSphere(path) {
 function getControls(camera, renderer) {
     const controls = new OrbitControls(camera, renderer.domElement)
 
-    controls.rotateSpeed = 0.3
-    controls.enableZoom = false
+    controls.rotateSpeed = SENSITIVITY
+    controls.enableZoom = ZOOM_ENABLED
+    controls.enablePan = MOVEMENT_ENABLED
 
     camera.position.set(-1, 0, 0)
     controls.update()
@@ -33,11 +42,13 @@ function getControls(camera, renderer) {
     return controls
 }
 
-function main() {
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1000)
+function display(path) {
+    document.body.innerHTML = ''
 
-    scene.add(buildSphere('src/img.jpg'))
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(FIELD_OF_VIEW, width / height, 0.1, RENDER_DISTANCE)
+
+    scene.add(buildSphere(path))
 
     const renderer = new THREE.WebGLRenderer()
     renderer.setSize(width, height)
@@ -65,4 +76,4 @@ function main() {
 }
 
 
-main()
+display('src/img.jpg')
