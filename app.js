@@ -7,6 +7,7 @@ const ZOOM_ENABLED = false
 const MOVEMENT_ENABLED = false
 const FIELD_OF_VIEW = 80
 const RENDER_DISTANCE = 20
+const SPHERE_SIDES = 64
 
 
 let width = window.innerWidth, height = window.innerHeight
@@ -22,7 +23,7 @@ function loadTexture(path) {
 }
 
 function buildSphere(path) {
-    const geometry = new THREE.SphereGeometry(10, 32, 32)
+    const geometry = new THREE.SphereGeometry(10, SPHERE_SIDES, SPHERE_SIDES)
     const material = new THREE.MeshBasicMaterial({map: loadTexture(path), side: THREE.DoubleSide})
     const sphere = new THREE.Mesh(geometry, material)
 
@@ -36,7 +37,7 @@ function getControls(camera, renderer) {
     controls.enableZoom = ZOOM_ENABLED
     controls.enablePan = MOVEMENT_ENABLED
 
-    camera.position.set(-1, 0, 0)
+    camera.position.set(0.000001, 0, 0)
     controls.update()
 
     return controls
