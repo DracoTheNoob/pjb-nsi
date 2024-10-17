@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>360 Visualizer</title>
+	
+	<link rel="stylesheet" href="src/css/style.css">
+	<link rel="stylesheet" href="src/css/gameplay.css">
+	
+	<script type="module" src="src/js/app.js" defer></script>
+	<script src="src/js/gameplay.js" defer></script>
+</head>
+<body>
+	<div class="timer_container">
+        <p id="minutes">00</p>
+        <p>:</p>
+        <p id="secondes">31</p>
+    </div>
+    <div class="map">
+        <button id="square" class="square" onclick="open_map()">🗺️</button>
+        <button id="close" onclick="close_map()"></button>
+    </div>
+</body>
+</html>
